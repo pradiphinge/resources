@@ -1,0 +1,119 @@
+Custom React-Select 
+https://codesandbox.io/s/0y320oyq5n?file=/src/index.js
+
+import Select, { components } from "react-select";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+library.add(faCaretDown);
+
+
+const dropdownIndicatorStyles = (base: any, state: any) => {
+  let changes = {
+    background: `url("data:image/svg+xml;utf8,
+    <svg fill='white' height='30' viewBox='0 0 24 24' width='30' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/>
+    <path d='M0 0h24v24H0z' fill='none'/></svg>") no-repeat center`,
+    // opacity: "100%",
+  };
+  return Object.assign(base, changes);
+};
+const indicatorContainerStyles = (base: any, state: any) => {
+  let changes = {
+    // all your override styles
+    // backgroundColor: "orange",
+    //fill: "orange",
+    //backgroundColor: "blue",
+    //backgroundImage: `url${addImage}`,
+    //background: `url${addImage}`,
+  };
+  return Object.assign(base, changes);
+};
+
+const optionStyles = (base: any, state: any) => {
+  let changes = {
+    // all your override styles
+    //backgroundColor: "white",
+  };
+  return Object.assign(base, changes);
+};
+
+const singleValueStyles = (base: any, state: any) => {
+  let changes = {
+    // all your override styles
+    backgroundColor: "transparent",
+    color: "white",
+  };
+  return Object.assign(base, changes);
+};
+
+const indicatorSeparatorStyles = (base: any) => {
+  let changes = {
+    display: "none",
+  };
+  return Object.assign(base, changes);
+};
+const inputStyles = (base: any) => {
+  let changes = {
+    color: "white",
+    fontSize: "20px",
+  };
+  return Object.assign(base, changes);
+};
+
+const controlStyles = (base: any, state: any) => {
+  let changes = {
+    // all your override styles
+    backgroundColor: "transparent",
+    borderColor: "transparent",
+  };
+  return Object.assign(base, changes);
+};
+
+const Placeholder = (props: any) => {
+  return <components.Placeholder {...props} />;
+};
+
+const CaretDownIcon = () => {
+  return <FontAwesomeIcon icon="caret-down" />;
+};
+
+const DropdownIndicator = (props: any) => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <CaretDownIcon />
+    </components.DropdownIndicator>
+  );
+};
+
+
+  handleChange = (info: any) => {
+    // this.setState({ selectedDealer: +info.target.value });
+    // this.props.doSaveDealerSelectedDropdowns({ id: info.target.value });
+
+    this.setState((prevState) => ({ ...prevState, selectTry: info }));
+
+    this.setState((prevState) => ({
+      ...prevState,
+      selectedDealer: info.value,
+    }));
+    this.props.doSaveDealerSelectedDropdowns({ id: info.value });
+  };
+
+<Select
+id="dealerDropdown"
+components={{ Placeholder, DropdownIndicator }}
+styles={{dropdownIndicator: dropdownIndicatorStyles,
+control: controlStyles,
+indicatorSeparator: indicatorSeparatorStyles,
+input: inputStyles,
+option: optionStyles,
+singleValue: singleValueStyles,
+indicatorsContainer: indicatorContainerStyles,
+}}
+onChange={this.handleChange}
+options={this.selectOptions}
+//tabSelectsValue={false}
+value={this.state.selectTry}
+defaultValue={{
+value: dealers[0].dealerId,
+label: dealers[0].name,s}}
