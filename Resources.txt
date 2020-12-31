@@ -76,11 +76,15 @@ const Placeholder = (props: any) => {
 const CaretDownIcon = () => {
   return <FontAwesomeIcon icon="caret-down" />;
 };
+const CaretUpIcon = () => {
+  return <FontAwesomeIcon icon="caret-up" />;
+};
 
 const DropdownIndicator = (props: any) => {
   return (
     <components.DropdownIndicator {...props}>
       <CaretDownIcon />
+      {props.selectProps.menuIsOpen ? <CaretUpIcon /> : <CaretDownIcon />}
     </components.DropdownIndicator>
   );
 };
