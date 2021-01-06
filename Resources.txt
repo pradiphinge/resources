@@ -1,3 +1,5 @@
+https://usefulangle.com/post/236/css-checkmark-tick
+
 Custom React-Select 
 https://codesandbox.io/s/0y320oyq5n?file=/src/index.js
 
